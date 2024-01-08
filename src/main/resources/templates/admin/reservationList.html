@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td{
+        text-align: center;
+        }
+
+        .td1 {
+	        text-align: center;
+         }
+
+        a{
+            display: inline-block;
+        }
+    </style>
+    <title>사용자 예약 내역</title>
+</head>
+
+<body>
+<a href="/">HOME</a>
+<h1>사용자 예약 내역</h1>
+    <table border="1" width="50%">
+        <thead>
+        <tr>
+            <th>예약자 명</th>
+            <th>예약자 전화번호</th>
+            <th>예약 매장명</th>
+            <th>예약 시간</th>
+            <th>이용 유무</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.userName}">예약자 명</td>
+            <td th:text="${reservation.tel}">예약자 명</td>
+            <td th:text="${reservation.storeName}">예약 매장명</td>
+            <td th:text="${reservation.reservationDate}">예약 시간</td>
+            <td>
+                <span th:if="${reservation.reservationCheck == true}" style="color: green">이용 함</span>
+                <span th:if="${reservation.reservationCheck == false}" style="color: red">이용 안함</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<p th:text="${failMsg}" style="color: red"></p>
+</body>
+</html>

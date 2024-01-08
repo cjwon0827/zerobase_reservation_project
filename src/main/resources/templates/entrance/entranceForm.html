@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>매장 입장 본인 확인</title>
+
+</head>
+<body>
+<h1>[[${store.name}]] 입장 본인 확인</h1>
+<form action="/entrance/new" method="post">
+    <input type="hidden" name="storeName" th:value="${store.name}">
+    <input type="hidden" name="id" th:value="${store.id}">
+
+    <p>
+    <label for="name">성함</label>
+    <input type="text" name="name" id="name" required="required">
+    </p>
+
+    <p>
+        <label for="tel">전화번호</label>
+        <input type="text" name="tel" id="tel" required="required">
+    </p>
+    <p th:text="${errorAuthMsg}" style="color: red"></p>
+    <p th:text="${errorTimeMsg}" style="color: red"></p>
+    <button type="submit">인증하기</button>
+</form>
+</body>
+</html>

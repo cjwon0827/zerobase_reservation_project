@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<h1>회원가입</h1>
+<form action="/userJoin" method="post">
+    <fieldset>
+        <legend>회원가입</legend>
+        <p>
+            <label>아이디</label>
+            <input type="text" name="uid">
+        </p>
+
+        <p>
+            <label>비밀번호</label>
+            <input type="password" name="password">
+        </p>
+
+        <p>
+            <label>이름</label>
+            <input type="text" name="name">
+        </p>
+
+        <p>
+            <label>전화번호</label>
+            <input type="tel" name="tel">
+        </p>
+
+        <p class="final_btn">
+            <a href="/"><button type="button" class="btn">이전으로</button></a>
+            <button>회원가입</button>
+        </p>
+    </fieldset>
+</form>
+</body>
+</html>

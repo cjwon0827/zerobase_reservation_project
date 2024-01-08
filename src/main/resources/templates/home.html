@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td{
+        text-align: center;
+        }
+
+        .td1 {
+	        text-align: center;
+         }
+
+        a, h1 {
+            display: inline-block;
+        }
+    </style>
+    <title>매장 방문 예약 서비스</title>
+</head>
+
+<body>
+<h1>매장 방문 예약 서비스</h1>
+<span style="float:right;">
+<span sec:authorize="hasRole('ADMIN')">[[${uid}]](관리자)님 환영합니다.</span><span sec:authorize="hasRole('USER')">[[${uid}]]님 환영합니다.</span><span sec:authorize="isAuthenticated()"><a href="/logout"><button>로그아웃</button></a></span><br>
+<span sec:authorize="hasRole('USER')"><a href="/reservationCheck"><button>예약내역</button></a></span>
+<span sec:authorize="hasRole('USER')"><a href="/usageHistory"><button>이용내역</button></a></span>
+
+<span sec:authorize="hasRole('ADMIN')"><a href="/admin/reservationList"><button>예약내역</button></a></span>
+<span sec:authorize="hasRole('ADMIN')"><a href="/admin/reviewList"><button>리뷰관리</button></a></span>
+</span><br>
+
+
+<span sec:authorize="isAnonymous()"><a href="/loginForm"><button>로그인</button></a></span>
+<span sec:authorize="isAnonymous()"><a href="/userJoin"><button>회원가입</button></a></span>
+<span sec:authorize="isAnonymous()"><a href="/adminJoin"><button>파트너 회원가입</button></a></span>
+
+<span sec:authorize="hasRole('ADMIN')"><a href="/admin/regist"><button>매장 등록하기</button></a></span>
+
+<div>
+    <form action="/search" method="get">
+        <p>
+            <label>검색</label>
+            <input type="text" placeholder="매장 검색" name="name">
+            <button type="submit">검색하기</button>
+        </p>
+    </form>
+
+    <table border="1" width="50%">
+        <thead>
+        <tr>
+            <th>매장명</th>
+            <th>전화번호</th>
+            <th>주소</th>
+            <th sec:authorize="hasRole('ADMIN')">비고</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="store : ${stores}">
+            <td><a href="/store" th:href="@{/store(name=${store.name})}" th:text="${store.name}"></a></td>
+            <td th:text="${store.tel}">전화번호</td>
+            <td th:text="${store.address}">주소</td>
+            <td sec:authorize="hasRole('ADMIN')" class="td1">
+                <a href="/admin/update" th:href="@{/admin/update(id=${store.id})}">
+                    <button type="button">수정</button>
+                </a>
+                <a href="/admin/delete" th:href="@{/admin/delete(id=${store.id})}">
+                    <button type="button">삭제</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

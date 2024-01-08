@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td{
+        text-align: center;
+        }
+
+        th{
+        width:30%;
+        }
+
+        .td1 {
+	        text-align: center;
+         }
+    </style>
+    <title>매장 상세 사항</title>
+</head>
+<body>
+<a href="/">HOME</a>
+<h1>매장 상세</h1>
+<table border="1" width="50%">
+    <tr>
+        <th>매장명</th>
+        <td th:text="${store.name}"></td>
+    </tr>
+    <tr>
+        <th>전화번호</th>
+        <td th:text="${store.tel}"></td>
+    </tr>
+    <tr>
+        <th>주소</th>
+        <td th:text="${store.address}"></td>
+    </tr>
+    <tr>
+        <th>매장 상세</th>
+        <td th:text="${store.shopDetail}"></td>
+    </tr>
+</table><br>
+<a href="/reservation" th:href="@{/reservation(name=${store.name})}"><button>예약하기</button></a>
+<a href="/entrance" th:href="@{/entrance(name=${store.name})}"><button>입장하기</button></a>
+</body>
+</html>

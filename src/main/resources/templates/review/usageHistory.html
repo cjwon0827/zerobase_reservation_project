@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td{
+        text-align: center;
+        }
+
+        .td1 {
+	        text-align: center;
+         }
+
+        a{
+            display: inline-block;
+        }
+    </style>
+    <title>이용 내역</title>
+</head>
+<body>
+<a href="/">HOME</a>
+<h1>이용 내역</h1>
+<a href="/writableReview"><button>작성 가능한 리뷰 내역</button></a>
+<a href="/review"><button>리뷰 내역</button></a><br><br>
+<table border="1" width="50%">
+    <thead>
+    <tr>
+        <th>이용 매장명</th>
+        <th>방문 시간</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="list : ${usedList}">
+        <td th:text="${list.storeName}">이용 매장명</td>
+        <td th:text="${list.entranceDate}">방문 시간</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>매장 수정</title>
+</head>
+<body>
+<h1>매장 수정</h1>
+<form action="/admin/updateSuccess" method="post">
+    <p>
+        <label>매장명</label>
+        <input type="text" th:value="${store.name}" name="name" required="required">
+    </p>
+    <p>
+        <label>전화번호</label>
+        <input type="text" th:value="${store.tel}" name="tel" required="required">
+    </p>
+    <p>
+        <label>주소</label>
+        <input type="text" th:value="${store.address}" name="address" required="required">
+    </p>
+    <p>
+        <label>매장 설명</label>
+        <input type="text" th:value="${store.shopDetail}" name="shopDetail" required="required">
+    </p>
+    <button type="submit">매장 수정</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td{
+        text-align: center;
+        }
+
+        .td1 {
+	        text-align: center;
+         }
+
+        a{
+            display: inline-block;
+        }
+    </style>
+    <title>리뷰 리스트</title>
+</head>
+<body>
+<a href="/">HOME</a>
+<h1>리뷰 리스트</h1>
+<a href="/writableReview"><button>작성 가능한 리뷰 내역</button></a>
+<a href="/review"><button>리뷰 내역</button></a><br><br>
+<table border="1" width="50%">
+    <thead>
+    <tr>
+        <th>이용 매장명</th>
+        <th>리뷰 내용</th>
+        <th>별점</th>
+        <th>비고</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="review : ${reviewList}">
+        <td th:text="${review.storeName}">이용 매장명</td>
+        <td th:text="${review.content}">리뷰 내용</td>
+        <td th:text="${review.score}">별점</td>
+        <td>
+        <a href="/updateReview" th:href="@{/updateReview(id=${review.id})}">
+            <button type="button">수정</button>
+        </a>
+        <a href="/deleteReview" th:href="@{/deleteReview(id=${review.id}, id2=${review.reservationId})}">
+            <button type="button">삭제</button>
+        </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
